@@ -34,7 +34,7 @@ let basic_setup = function(accessory) {
 }
 
 let add_target_switches = function(accessory,speaker,target) {
-  let SwitchService = accessory.addService(Service.Switch, target.title,target.title);    
+  let SwitchService = accessory.addService(Service.Switch, speaker.roomName + ' ' + target.title,speaker.roomName + ' ' +target.title);
   SwitchService.getCharacteristic(Characteristic.On)
     .on('set', function(value, callback) {
       if (value) {
@@ -50,15 +50,12 @@ let add_target_switches = function(accessory,speaker,target) {
 
   SwitchService.getCharacteristic(Characteristic.On)
     .on('get', function(callback) {
-      console.log(speaker.state.currentTrack);
-      console.log(speaker.state.currentTrack.stationName,target.title);
-      console.log(speaker.state.playbackState)
-    if ((speaker.state.currentTrack.uri === target.uri) && 
-       (speaker.state.playbackState !== 'STOPPED') ) {
-      callback(null,true);
-    } else {
-      callback(null,false);
-    }
+      if ((speaker.state.currentTrack.uri === target.uri) &&
+         (speaker.state.playbackState !== 'STOPPED') ) {
+        callback(null,true);
+      } else {
+        callback(null,false);
+      }
   });
 };
 
