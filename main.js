@@ -19,7 +19,7 @@ let targetPort = 51826;
 
 let filter_radio_stations = fav => fav.uri.indexOf('x-sonosapi-stream') >= 0;
 
-setTimeout(function() {
+discovery.on('topology-change', () => {
   let speakers = [].concat.apply([], discovery.zones.map( zc => zc.members ));
   let living_room = speakers.filter( speaker => speaker.roomName == 'Living Room')[0];
   // // discovery.getPlaylists().then( lists => console.log(lists) );
@@ -31,4 +31,4 @@ setTimeout(function() {
     accessory.publish({port: targetPort++, username: accessory.username, pincode: accessory.pincode});
     console.log('Published',stations);
   });
-},3000);
+});
