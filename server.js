@@ -40,8 +40,11 @@ discovery.on('topology-change', () => {
   .then( stations => {
     accepted_speakers.forEach( room => {
       let accessory = Speaker(Wrapper(room),stations);
+      let target_port = targetPort++;
       bridge.addBridgedAccessory(accessory);
-      console.log('Published',room.roomName,stations);
+
+      // accessory.publish({port: target_port, username: accessory.username, pincode: accessory.pincode});
+      console.log('Published',room.roomName,stations,'on port',target_port);
     });
     // Publish the Bridge on the local network.
     bridge.publish({
