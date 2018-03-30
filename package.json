@@ -1,0 +1,16 @@
+{
+  "name": "sonosradiohomekit",
+  "version": "0.0.1",
+  "description": "Glue together HomeKit and Sonos favourites to emulate radio functionality",
+  "main": "main.js",
+  "dependencies": {
+    "hap-nodejs": "^0.4.41",
+    "sonos-discovery": "^1.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hiren Joshi <hirenj@gmail.com>",
+  "license": "ISC"
+}
